@@ -74,8 +74,10 @@
     </header>
 
     <main>
-      <p id="notice"></p>
-      <%= yield %>
+        <% flash.each do |key, value| %>
+        <p id="notice"><%= value %></p>
+        <% end %>
+        <%= yield %>
     </main>
 
     <footer>

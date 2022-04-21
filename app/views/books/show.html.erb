@@ -1,7 +1,7 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <!--左側-->
-    <%= render 'books_left', book: @book %>
+    <%= render 'sidebar', book: @book_new, user: @user %>
     <!--右側-->
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
@@ -11,7 +11,7 @@
             <td>
               <%= link_to user_path(@book.user_id) do %>
               <%= image_tag 'default-image.jpeg'%></br>
-              <%= current_user.name %>
+              <%= @user.name %>
               <% end %>
             </td>
             <td>
@@ -20,6 +20,11 @@
               <% end %>
             </td>
             <td><%= @book.body %></td>
+
+            <% if @book.user == current_user %>
+            <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
+            <td><%= link_to "Destroy", book_path(@book.id), method: :delete, class: "btn btn-sm btn-danger destroy_book_#{@book.id}", "data-confirm" => "本当に消しますか？" %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>
