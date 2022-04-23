@@ -28,7 +28,7 @@
           <tr>
             <td>
               <%= link_to user_path(book.user_id) do %>
-              <%= image_tag 'default-image.jpeg'%>
+              <%= image_tag book.user.get_profile_image(100,100) %>
               <% end %>
             </td>
             <td>
